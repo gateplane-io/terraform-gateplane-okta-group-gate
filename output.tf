@@ -10,13 +10,20 @@
 
 output "mount_path" {
   description = "The Vault/OpenBao path where the plugin has been mounted."
-  value       = local.plugin_paths_base
+  value       = module.base.mount_path
 }
 
 output "policy_names" {
   description = "The names of the policies created and referenced in this module."
-  value = {
-    "requestor" = vault_policy.user.name,
-    "approver"  = vault_policy.gtkpr.name,
-  }
+  value       = module.base.policy_names
+}
+
+output "policies" {
+  description = "The verbatim policies created and referenced in this module."
+  value       = module.base.policies
+}
+
+output "paths" {
+  description = "The map of paths supported by this plugin."
+  value       = local.plugin_paths
 }
